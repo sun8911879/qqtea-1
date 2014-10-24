@@ -1,11 +1,11 @@
-QQ Ìî³äËã·¨ºÍTea¼Ó½âÃÜµÄJavaScriptÊµÏÖ
+QQ å¡«å……ç®—æ³•å’ŒTeaåŠ è§£å¯†çš„JavaScriptå®žçŽ°
 =========
 
 Example:
 ```javascript
 
 /*
-QQ PC Client UDP Êý¾Ý°üÑù±¾:
+QQ PC Client UDP æ•°æ®åŒ…æ ·æœ¬:
 02 35 47 08 25 05 87 00 00 00 00 03 00 00 00 01 01 01 00 00 67 22 00 00 00 00 E7 15 BA 2E D5 49 63 A5 5D 29 9E A7 82 7B A7 CD E8 F3 03 39 AB 88 A0 8A 48 42 62 7A 9F BB 80 6F 47 54 82 57 32 4F 38 71 5A 17 3C A4 35 BD FF AD 6C 10 11 06 13 A7 A2 85 AA E0 26 20 D9 78 B8 FE D5 B7 A7 B4 64 FD BE 7E B7 8D FF 8E 9C 8D D5 B3 95 AE 74 68 8F 56 F5 0A 72 68 B8 68 E2 AB CC 77 FA 1C 2A A2 11 91 6A CD 82 DA 02 89 54 46 E2 38 C4 E5 D0 C5 9C 5C 41 1B 03
 */
 
@@ -15,47 +15,47 @@ key = tea.hex2bin('E7 15 BA 2E D5 49 63 A5 5D 29 9E A7 82 7B A7 CD');
 
 data = tea.hex2bin('E8 F3 03 39 AB 88 A0 8A 48 42 62 7A 9F BB 80 6F 47 54 82 57 32 4F 38 71 5A 17 3C A4 35 BD FF AD 6C 10 11 06 13 A7 A2 85 AA E0 26 20 D9 78 B8 FE D5 B7 A7 B4 64 FD BE 7E B7 8D FF 8E 9C 8D D5 B3 95 AE 74 68 8F 56 F5 0A 72 68 B8 68 E2 AB CC 77 FA 1C 2A A2 11 91 6A CD 82 DA 02 89 54 46 E2 38 C4 E5 D0 C5 9C 5C 41 1B');
 
-result = tea.decrypt(key, data);//½âÃÜ
+result = tea.decrypt(key, data);//è§£å¯†
 
-console.log(tea.bin2hex(result));//Êä³ö½á¹û(hex)
+console.log(tea.bin2hex(result));//è¾“å‡ºç»“æžœ(hex)
 
-data = tea.encrypt(key, result);//¼ÓÃÜ
+data = tea.encrypt(key, result);//åŠ å¯†
 
-console.log(tea.bin2hex(data));//Êä³ö¼ÓÃÜºóµÄ½á¹û(hex), ÒòÎªQQµÄTeaËã·¨ÖÐ¶ÔÇ°8¸ö×Ö½Ú²ÉÓÃËæ»úÌî³äµÄ»úÖÆ,ËùÒÔÃ¿´Î¼ÓÃÜºóµÄ½á¹û¶¼ÊÇÒ»ÑùµÄ
+console.log(tea.bin2hex(data));//è¾“å‡ºåŠ å¯†åŽçš„ç»“æžœ(hex), å› ä¸ºQQçš„Teaç®—æ³•ä¸­å¯¹å‰8ä¸ªå­—èŠ‚é‡‡ç”¨éšæœºå¡«å……çš„æœºåˆ¶,æ‰€ä»¥æ¯æ¬¡åŠ å¯†åŽçš„ç»“æžœéƒ½æ˜¯ä¸€æ ·çš„
 
-result = tea.decrypt(key, data);//ÔÙ´Î½øÐÐ½âÃÜ
+result = tea.decrypt(key, data);//å†æ¬¡è¿›è¡Œè§£å¯†
 
-console.log(tea.bin2hex(result));//Êä³ö½âÃÜºóµÄ½á¹û(hex)
+console.log(tea.bin2hex(result));//è¾“å‡ºè§£å¯†åŽçš„ç»“æžœ(hex)
 
 
 /*
-    ÓëÌÚÑ¶QQ·þÎñÆ÷½»»¥µÄÑù±¾.
-	¹¦ÄÜ: ¸ù¾ÝEmailÕËºÅ»ñÈ¡¶ÔÓ¦µÄQQºÅÂë.
+    ä¸Žè…¾è®¯QQæœåŠ¡å™¨äº¤äº’çš„æ ·æœ¬.
+	åŠŸèƒ½: æ ¹æ®Emailè´¦å·èŽ·å–å¯¹åº”çš„QQå·ç .
 */
 
-var email = 'dds_feng@qq.com';//Òª²éÑ¯µÄEmail
+var email = 'dds_feng@qq.com';//è¦æŸ¥è¯¢çš„Email
 
-data = tea.hex2bin('02') + String.fromCharCode(email.length) + email;//¹¹ÔìÇëÇó°ü
+data = tea.hex2bin('02') + String.fromCharCode(email.length) + email;//æž„é€ è¯·æ±‚åŒ…
 
-data = tea.encrypt(key, data);//Ê¹ÓÃKEY½øÐÐ¼ÓÃÜ
+data = tea.encrypt(key, data);//ä½¿ç”¨KEYè¿›è¡ŒåŠ å¯†
 
-var message = new Buffer(tea.hex2bin('02122100b20D1B00000000') + key + data + '\x03', 'binary');//¹¹ÔìÒ»¸öBuffer(ÒòÎªdgramÖ»ÄÜ·¢ËÍBufferÀàÐÍµÄÊý¾Ý)
+var message = new Buffer(tea.hex2bin('02122100b20D1B00000000') + key + data + '\x03', 'binary');//æž„é€ ä¸€ä¸ªBuffer(å› ä¸ºdgramåªèƒ½å‘é€Bufferç±»åž‹çš„æ•°æ®)
 
 require('dgram').createSocket('udp4').on('message', function (message, remote) {//receive message
-	var data = message.toString('binary', 7, message.length - 1);//µÃµ½Êý¾ÝÌå(ºöÂÔ°üÍ·ºÍ°üÎ²)
+	var data = message.toString('binary', 7, message.length - 1);//å¾—åˆ°æ•°æ®ä½“(å¿½ç•¥åŒ…å¤´å’ŒåŒ…å°¾)
 
-	data = tea.decrypt(key, data);//Ê¹ÓÃÖ®Ç°µÄ¼ÓÃÜKEY½øÐÐ½âÃÜ
+	data = tea.decrypt(key, data);//ä½¿ç”¨ä¹‹å‰çš„åŠ å¯†KEYè¿›è¡Œè§£å¯†
 
 	message = new Buffer(data, 'binary');
 
-	console.log('QQ Number:\t' + parseInt(message.toString('hex', 2, message.length - (message.length - 6)), 16));//Êä³ö¶ÔÓ¦µÄQQºÅÂë
+	console.log('QQ Number:\t' + parseInt(message.toString('hex', 2, message.length - (message.length - 6)), 16));//è¾“å‡ºå¯¹åº”çš„QQå·ç 
 
 	this.close();
-}).send(message, 0, message.length, 8000, 'sz3.tencent.com');//ÏòÌÚÑ¶QQµÄ·þÎñÆ÷·¢ËÍÊý¾Ý°ü
+}).send(message, 0, message.length, 8000, 'sz3.tencent.com');//å‘è…¾è®¯QQçš„æœåŠ¡å™¨å‘é€æ•°æ®åŒ…
 
 ```
 
 
-> JavaScript Ëã·¨¸ù¾Ý [QQÌî³äËã·¨ºÍTEA ¼Ó½âÃÜµÄpythonÊµÏÖ](http://bbs.chinaunix.net/thread-583468-1-1.html) ¸ÄÐ´¶ø³É.
+> JavaScript ç®—æ³•æ ¹æ® [QQå¡«å……ç®—æ³•å’ŒTEA åŠ è§£å¯†çš„pythonå®žçŽ°](http://bbs.chinaunix.net/thread-583468-1-1.html) æ”¹å†™è€Œæˆ.
 >
 
